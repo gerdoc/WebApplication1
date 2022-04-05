@@ -32,15 +32,21 @@ public class Servlet1 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        try (PrintWriter out = response.getWriter()) 
+        {
+            String nombre1 = null;
+            String calificacion1 = null;
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Servlet1</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Servlet1 at " + request.getContextPath() + "</h1>");
+            nombre1 = request.getParameter( "nombre1" );
+            calificacion1 = request.getParameter( "calificacion1" );
+            out.println("<h1>Nombre =" + nombre1 + "</h1>");
+            out.println("<h1>Calificación1 =" + calificacion1 + "</h2>");
             out.println("</body>");
             out.println("</html>");
         }

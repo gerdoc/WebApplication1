@@ -13,5 +13,16 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <form id="form1" action="Servlet1">
+            Dame tu nombre:
+            <input id="nombre1" name="nombre1" type="text" />
+            <br/>
+            Dame tu calificación:
+            <input id="calificacion1" name="calificacion1" type="number" />
+            <br/>
+            <input id="send" type="submit" value="Enviar" />
+            <input id="send" type="reset" value="Limpiar" />
+            
+        </form>
     </body>
 </html>
