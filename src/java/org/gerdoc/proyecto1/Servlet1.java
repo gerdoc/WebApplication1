@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.gerdoc.proyecto1.negocio.Negocio;
 
 /**
  *
@@ -34,8 +35,7 @@ public class Servlet1 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
-            String nombre1 = null;
-            String calificacion1 = null;
+            Negocio negocio = null;
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -43,10 +43,21 @@ public class Servlet1 extends HttpServlet {
             out.println("<title>Servlet Servlet1</title>");            
             out.println("</head>");
             out.println("<body>");
-            nombre1 = request.getParameter( "nombre1" );
-            calificacion1 = request.getParameter( "calificacion1" );
-            out.println("<h1>Nombre =" + nombre1 + "</h1>");
-            out.println("<h1>Calificación1 =" + calificacion1 + "</h2>");
+            negocio = new Negocio( );
+            negocio.setNombre1( request.getParameter( "nombre1" ) );
+            negocio.setNombre2( request.getParameter( "nombre2" ) );
+            negocio.setCal1( request.getParameter( "calificacion1" ) );
+            negocio.setCal2( request.getParameter( "calificacion2" ) );
+            if( !negocio.isValido( ) || !negocio.procesa( ) )
+            {
+                out.println("<h1>Error con los datos</h1>");
+            }
+            else
+            {
+                out.println("<h1>Nombre =" + negocio.getNombreMayor( ) + "</h1>");
+                out.println("<h1>Calificación1 =" + negocio.getCalifMayor() + "</h2>");
+            }
+            
             out.println("</body>");
             out.println("</html>");
         }
