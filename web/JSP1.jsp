@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <form id="form1" action="Servlet1">
+        <form id="form1" action="Servlet2">
             <%
                 for( int i =0; i< 5; i++)
                 {
