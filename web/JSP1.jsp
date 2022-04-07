@@ -14,20 +14,22 @@
     <body>
         <h1>Hello World!</h1>
         <form id="form1" action="Servlet1">
-            Dame tu nombre 1:
-            <input id="nombre1" name="nombre1" type="text" />
-            <br/>
-            Dame tu calificación 1:
-            <input id="calificacion1" name="calificacion1" type="number" />
-            <br/>
-            Dame tu nombre 2:
-            <input id="nombre2" name="nombre2" type="text" />
-            <br/>
-            Dame tu calificación 2:
-            <input id="calificacion2" name="calificacion2" type="number" />
-            <br/>
+            <%
+                for( int i =0; i< 5; i++)
+                {
+            %>
+                    Dame tu nombre <%=i+1%>:
+                    <input id="nombre<%=i+1%>" name="nombre<%=i+1%>" type="text" />
+                    <br/>
+                    Dame tu calificación <%=i+1%>:
+                    <input id="calificacion<%=i+1%>" name="calificacion<%=i+1%>" type="number" />
+                    <br/>                    
+            <%
+                }
+            %>
+            
             <input id="send" type="submit" value="Enviar" />
-            <input id="send" type="reset" value="Limpiar" />
+            <input id="limpiar" type="reset" value="Limpiar" />
             
         </form>
     </body>
