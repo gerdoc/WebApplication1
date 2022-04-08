@@ -7,19 +7,21 @@ package org.gerdoc.proyecto1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.gerdoc.proyecto1.negocio.Negocio;
+import org.gerdoc.proyecto1.dao.Alumno;
 
 /**
  *
  * @author Alumno
  */
-@WebServlet(name = "Servlet1", urlPatterns = {"/Servlet1"})
-public class Servlet1 extends HttpServlet {
+@WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
+public class Servlet2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,33 +33,48 @@ public class Servlet1 extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException 
+    {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) 
         {
-            Negocio negocio = null;
-            
+            List<Alumno>alumnos = null;
+            Alumno alumno = null;
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Servlet1</title>");            
+            out.println("<title>Servlet Servlet2</title>");            
             out.println("</head>");
             out.println("<body>");
-            negocio = new Negocio( );
-            negocio.setNombre1( request.getParameter( "nombre1" ) );
-            negocio.setNombre2( request.getParameter( "nombre2" ) );
-            negocio.setCal1( request.getParameter( "calificacion1" ) );
-            negocio.setCal2( request.getParameter( "calificacion2" ) );
-            if( !negocio.isValido( ) || !negocio.procesa( ) )
+            alumnos = new ArrayList<>( );
+            for( int i = 0; i < 5; i++)
             {
-                out.println("<h1>Error con los datos</h1>");
+               alumno = new Alumno( );
+               alumno.setNombre( request.getParameter( "nombre" + (i + 1) ) );
+               alumno.setCalif( request.getParameter( "calificacion" + (i + 1) ) );
+               alumnos.add(alumno);
             }
-            else
+            out.println("<table border=\"1\">");
+            out.println("<tr>");
+            out.println("<td>");
+            out.println("Nombre");
+            out.println("</td>");
+            out.println("<td>");
+            out.println("Califiación");
+            out.println("</td>");
+            out.println("</tr>");
+            for( Alumno aux : alumnos )
             {
-                out.println("<h1>Nombre =" + negocio.getNombreMayor( ) + "</h1>");
-                out.println("<h1>Calificación1 =" + negocio.getCalifMayor() + "</h2>");
+                out.println("<tr>");
+                out.println("<td>");
+                out.println(aux.getNombre());
+                out.println("</td>");
+                out.println("<td>");
+                out.println(aux.getCalif());
+                out.println("</td>");
+                out.println("</tr>");   
             }
-            
+            out.println("</table>");
             out.println("</body>");
             out.println("</html>");
         }
